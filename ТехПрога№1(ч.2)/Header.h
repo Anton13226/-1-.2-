@@ -64,8 +64,20 @@ public:
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
 	shot() {} // создание без инициализации.
-}
-;
+};
+
+class polar : public type
+{
+private:
+	int radius;
+	float angle;
+public:
+	// переопределяем интерфейс класса
+	void InData(ifstream &ReadFile); // ввод
+	void Out(ofstream &WriteFile); // вывод
+
+	polar() {} // создание без инициализации.
+};
 
 
 
