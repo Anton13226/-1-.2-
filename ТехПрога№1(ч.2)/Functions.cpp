@@ -123,6 +123,32 @@ void shot::Out(ofstream &WriteFile)
 	WriteFile << number1 / Nod << "/" << number2 / Nod << endl;
 }
 
+void container::FiltredOut(ofstream &ofst)
+{
+	Node *temporary = head;
+	ofst << "Only Shots" << endl;
+	for (int i = 0; i < len; i++)
+	{
+		ofst << i+1 << ": ";
+		temporary->info->OutOnlyShot(ofst);
+		temporary = temporary->next;
+	}
+}
+
+
+void type::OutOnlyShot(ofstream &WriteFile)
+{
+	WriteFile << endl;
+}
+
+void shot::OutOnlyShot(ofstream &WriteFile)
+{
+	Out(WriteFile);
+}
+
+
+
+
 int NOD(int a, int b)
 {
 	while ((a && b) != 0)

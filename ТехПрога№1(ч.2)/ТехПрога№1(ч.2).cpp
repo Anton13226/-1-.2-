@@ -13,6 +13,7 @@ int main()
 	container c;
 	c.In(ReadFile);
 	c.Out(WriteFile);
+	c.FiltredOut(WriteFile);
 	c.Clear();
 	cout << "Stop" << endl;
 	return 0;

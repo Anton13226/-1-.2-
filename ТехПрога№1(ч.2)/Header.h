@@ -15,6 +15,7 @@ public:
 
 	virtual void InData(ifstream &ReadFile)=0;					// ввод с учетом типа объекта
 	virtual void Out(ofstream &WriteFile)=0;		// вывод с учетом типа объекта
+	virtual void OutOnlyShot(ofstream &WriteFile);
 protected:
 	type() {};
 };
@@ -33,6 +34,7 @@ public:
 	void In(ifstream &ReadFile);	//ввод матриц
 	void Out(ofstream &WriteFile);	//вывод матриц
 	void Clear();				//очистка контейнера
+	void FiltredOut(ofstream &WriteFile);
 	container();				//инициализация контейнера
 	~container() { Clear(); };
 private:
@@ -63,6 +65,7 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
+	void OutOnlyShot(ofstream &WriteFile);
 	shot() {} // создание без инициализации.
 }
 ;
