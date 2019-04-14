@@ -101,11 +101,18 @@ void complex::InData(ifstream &ReadFile)
 
 void complex::Out(ofstream &WriteFile)
 {
+
 	WriteFile << "Комплексное число:    Z=" << number1;
 	if (number2 > 0)
 		WriteFile << "+" << number2 << "i" << endl;
 	else
 		WriteFile << number2 << "i" << endl;
+}
+
+float complex::Count()
+{
+	number1 = round(sqrt(number1*number1 + number2 * number2)*100)/100;
+	return number1;
 }
 
 
@@ -120,7 +127,13 @@ void shot::Out(ofstream &WriteFile)
 	int Nod;
 	WriteFile << "Дробь:   ";
 	Nod = NOD(number1, number2);
-	WriteFile << number1 / Nod << "/" << number2 / Nod << endl;
+	WriteFile <<  number1 / Nod << "/" << number2 / Nod << endl;
+}
+
+float shot::Count()
+{
+	number1 = round((number1 / number2)*100)/100; //до второго занака после запятой
+	return number1;
 }
 
 int NOD(int a, int b)

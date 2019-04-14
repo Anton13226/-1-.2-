@@ -14,7 +14,8 @@ public:
 	static type* In(ifstream &ReadFile);				//Для ввода последующих эл-ов
 
 	virtual void InData(ifstream &ReadFile)=0;					// ввод с учетом типа объекта
-	virtual void Out(ofstream &WriteFile)=0;		// вывод с учетом типа объекта
+	virtual void Out(ofstream &WriteFile)=0;	
+	virtual float Count() = 0;	// вывод с учетом типа объекта
 protected:
 	type() {};
 };
@@ -33,6 +34,7 @@ public:
 	void In(ifstream &ReadFile);	//ввод матриц
 	void Out(ofstream &WriteFile);	//вывод матриц
 	void Clear();				//очистка контейнера
+
 	container();				//инициализация контейнера
 	~container() { Clear(); };
 private:
@@ -44,25 +46,26 @@ private:
 class complex : public type 
 {
 private:
-	int number1;
-	int number2;
+	double number1;
+	double number2;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
-
+	float Count();
 	complex() {} // создание без инициализации.
 };
 
 class shot : public type {
 private:
-	int number1;
-	int number2;
+	double number1;
+	double number2;
 
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
+	float Count();
 	shot() {} // создание без инициализации.
 }
 ;
