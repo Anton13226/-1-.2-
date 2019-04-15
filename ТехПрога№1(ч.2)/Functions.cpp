@@ -65,6 +65,33 @@ void container::Clear()
 
 }
 
+void container::Sorting()
+{
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = 0; j < len - 1; j++)
+		{
+			if (current->Compare(current))
+			{
+				type *previously1 = current;
+
+				while (previously1->next != current)
+					previously1 = previously1->next;
+
+				type *next1 = current->next;
+				type *next2 = current->next->next;
+
+				current->next->next = current;
+				current->next = next2;
+				previously1->next = next1;
+				current = next1;
+			}
+		}
+		current = current->next;
+	}
+	current = current->next;
+}
+
 container::container()
 {
 	head = NULL;

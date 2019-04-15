@@ -34,7 +34,7 @@ public:
 	void In(ifstream &ReadFile);	//ввод матриц
 	void Out(ofstream &WriteFile);	//вывод матриц
 	void Clear();				//очистка контейнера
-
+	void Sorting();
 	container();				//инициализация контейнера
 	~container() { Clear(); };
 private:
