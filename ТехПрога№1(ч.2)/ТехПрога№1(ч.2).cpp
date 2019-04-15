@@ -12,6 +12,7 @@ int main()
 	cout << "Start" << endl;
 	container c;
 	c.In(ReadFile);
+	c.Sorting();
 	c.Out(WriteFile);
 	c.Clear();
 	cout << "Stop" << endl;

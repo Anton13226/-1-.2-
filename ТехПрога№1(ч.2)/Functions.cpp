@@ -67,29 +67,30 @@ void container::Clear()
 
 void container::Sorting()
 {
+	
 	for (int i = 0; i < len - 1; i++)
 	{
 		for (int j = 0; j < len - 1; j++)
 		{
-			if (current->Compare(current))
+			if (head->info->Count() > head->next->info->Count())
 			{
-				type *previously1 = current;
+				Node *prediudushiy = head;
 
-				while (previously1->next != current)
-					previously1 = previously1->next;
+				while (prediudushiy->next != head)
+					prediudushiy = prediudushiy->next;
 
-				type *next1 = current->next;
-				type *next2 = current->next->next;
+				Node *next1 = head->next;
+				Node *next2 = head->next->next;
 
-				current->next->next = current;
-				current->next = next2;
-				previously1->next = next1;
-				current = next1;
+				next1->next = head;
+				head->next = next2;
+				prediudushiy->next = next1;
+				head = next1;
 			}
+			head = head->next;
 		}
-		current = current->next;
+		head = head->next;
 	}
-	current = current->next;
 }
 
 container::container()
@@ -129,7 +130,7 @@ void complex::InData(ifstream &ReadFile)
 void complex::Out(ofstream &WriteFile)
 {
 
-	WriteFile << "Комплексное число:    Z=" << number1;
+	WriteFile << "Комплексное число:    Z=" << Count() << "|||"  << number1;
 	if (number2 > 0)
 		WriteFile << "+" << number2 << "i" << endl;
 	else
@@ -138,8 +139,9 @@ void complex::Out(ofstream &WriteFile)
 
 float complex::Count()
 {
-	number1 = round(sqrt(number1*number1 + number2 * number2)*100)/100;
-	return number1;
+	double Sort = 0;
+	Sort = round(sqrt(number1*number1 + number2 * number2)*100)/100;
+	return Sort;
 }
 
 
@@ -152,15 +154,16 @@ void shot::InData(ifstream &ReadFile)
 void shot::Out(ofstream &WriteFile)
 {
 	int Nod;
-	WriteFile << "Дробь:   ";
+	WriteFile << "Дробь:   " << Count() << "|||";
 	Nod = NOD(number1, number2);
-	WriteFile <<  number1 / Nod << "/" << number2 / Nod << endl;
+	WriteFile <<  number1/Nod << "/" << number2/Nod << endl;
 }
 
 float shot::Count()
 {
-	number1 = round((number1 / number2)*100)/100; //до второго занака после запятой
-	return number1;
+	double Sort = 0;
+	Sort = round((number1 / number2)*100)/100; //до второго занака после запятой
+	return Sort;
 }
 
 int NOD(int a, int b)
