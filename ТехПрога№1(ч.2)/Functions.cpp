@@ -111,8 +111,9 @@ void complex::Out(ofstream &WriteFile)
 
 float complex::Count()
 {
-	number1 = round(sqrt(number1*number1 + number2 * number2)*100)/100;
-	return number1;
+	double Sort = 0;
+	Sort = round(sqrt(number1*number1 + number2 * number2) * 100) / 100;
+	return Sort;
 }
 
 
