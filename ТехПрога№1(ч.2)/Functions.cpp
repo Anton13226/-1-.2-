@@ -132,8 +132,9 @@ void shot::Out(ofstream &WriteFile)
 
 float shot::Count()
 {
-	number1 = round((number1 / number2)*100)/100; //до второго занака после запятой
-	return number1;
+	double Sort = 0;
+	Sort = round((number1 / number2) * 100) / 100; //до второго занака после запятой
+	return Sort;
 }
 
 int NOD(int a, int b)
