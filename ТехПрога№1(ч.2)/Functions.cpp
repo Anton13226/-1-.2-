@@ -126,19 +126,18 @@ void shot::Out(ofstream &WriteFile)
 void container::FiltredOut(ofstream &WriteFile)
 {
 	Node *temp = head;
-	WriteFile << "Only Shots" << endl;
+	WriteFile << endl << "Только дроби:" << endl;
 	for (int i = 0; i < len; i++)
 	{
-		WriteFile << i+1 << ": ";
 		temp->info->OutOnlyShot(WriteFile);
 		temp = temp->next;
 	}
 }
 
 
-void type::OutOnlyShot(ofstream &WriteFile)
+void type::OutOnlyShot(ofstream &WriteFile) //void complex::OutOnlyShot(ofstream &WriteFile)
 {
-	WriteFile << endl;
+	exit;
 }
 
 void shot::OutOnlyShot(ofstream &WriteFile)
