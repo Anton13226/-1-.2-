@@ -47,7 +47,6 @@ class complex : public type
 private:
 	int number1;
 	int number2;
-	string metric;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
