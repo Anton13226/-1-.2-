@@ -77,11 +77,12 @@ private:
 	double radius;
 	double angle;
 	string metric;
+	const float rad = 6.2;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
-
+	float Count();
 	polar() {} // создание без инициализации.
 };
 

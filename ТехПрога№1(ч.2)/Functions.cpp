@@ -156,6 +156,8 @@ void polar::InData(ifstream &ReadFile)
 	if (radius < 0)
 		radius = -radius;
 	ReadFile >> angle;
+	if ((angle < 0) || (angle > rad))
+		angle = rad;
 	getline(ReadFile, metric, ' ');
 }
 
@@ -163,4 +165,11 @@ void polar::Out(ofstream &WriteFile)
 {
 	WriteFile << "Полярные координаты:   ";
 	WriteFile << "(" << radius << ";" << angle << ")" << "|| Е. И: " << metric << endl;
+}
+
+float polar::Count()
+{
+	double Sort = 0;
+	Sort = angle;
+	return Sort;
 }
