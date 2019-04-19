@@ -62,6 +62,34 @@ void container::Clear()
 	}
 }
 
+void container::Sorting()
+{
+	
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = 0; j < len - 1; j++)
+		{
+			if (head->info->Count() > head->next->info->Count())
+			{
+				Node *prediudushiy = head;
+
+				while (prediudushiy->next != head)
+					prediudushiy = prediudushiy->next;
+
+				Node *next1 = head->next;
+				Node *next2 = head->next->next;
+
+				next1->next = head;
+				head->next = next2;
+				prediudushiy->next = next1;
+				head = next1;
+			}
+			head = head->next;
+		}
+		head = head->next;
+	}
+}
+
 container::container()
 {
 	head = NULL;
@@ -103,7 +131,7 @@ void complex::InData(ifstream &ReadFile)
 void complex::Out(ofstream &WriteFile)
 {
 
-	WriteFile << "Комплексное число:    Z=" << number1;
+	WriteFile << "Комплексное число:    Z=" << Count() << "|||"  << number1;
 	if (number2 > 0)
 		WriteFile << "+" << number2 << "i   || Е. И: " << metric << endl;
 	else
@@ -128,7 +156,7 @@ void shot::InData(ifstream &ReadFile)
 void shot::Out(ofstream &WriteFile)
 {
 	int Nod;
-	WriteFile << "Дробь:   ";
+	WriteFile << "Дробь:   " << Count() << "|||";
 	Nod = NOD(number1, number2);
 	WriteFile << number1 / Nod << "/" << number2 / Nod << "|| Е. И: " << metric << endl;
 }
