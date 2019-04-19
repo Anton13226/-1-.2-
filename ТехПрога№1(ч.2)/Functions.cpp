@@ -131,7 +131,7 @@ void complex::InData(ifstream &ReadFile)
 void complex::Out(ofstream &WriteFile)
 {
 
-	WriteFile << "Комплексное число:    Z=" << Count() << "|||"  << number1;
+	WriteFile << "Комплексное число:    Z=" << number1;
 	if (number2 > 0)
 		WriteFile << "+" << number2 << "i   || Е. И: " << metric << endl;
 	else
@@ -156,7 +156,7 @@ void shot::InData(ifstream &ReadFile)
 void shot::Out(ofstream &WriteFile)
 {
 	int Nod;
-	WriteFile << "Дробь:   " << Count() << "|||";
+	WriteFile << "Дробь:   ";
 	Nod = NOD(number1, number2);
 	WriteFile << number1 / Nod << "/" << number2 / Nod << "|| Е. И: " << metric << endl;
 }
