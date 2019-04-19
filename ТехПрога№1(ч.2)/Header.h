@@ -80,7 +80,6 @@ private:
 	double radius;
 	double angle;
 	string metric;
-	const float rad = 6.2;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод

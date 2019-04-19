@@ -209,8 +209,8 @@ void polar::InData(ifstream &ReadFile)
 	if (radius < 0)
 		radius = -radius;
 	ReadFile >> angle;
-	if ((angle < 0) || (angle > rad))
-		angle = rad;
+	if ((angle < 0) || (angle > 6.2))
+		angle = 6.2;
 	getline(ReadFile, metric, ' ');
 }
 
