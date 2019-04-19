@@ -113,6 +113,7 @@ void shot::InData(ifstream &ReadFile)
 {
 	ReadFile >> number1;
 	ReadFile >> number2;
+	getline(ReadFile, metric, ' ');
 }
 
 void shot::Out(ofstream &WriteFile)
@@ -120,7 +121,7 @@ void shot::Out(ofstream &WriteFile)
 	int Nod;
 	WriteFile << "ִנמבü:   ";
 	Nod = NOD(number1, number2);
-	WriteFile << number1 / Nod << "/" << number2 / Nod << endl;
+	WriteFile << number1 / Nod << "/" << number2 / Nod << "|| ֵ. ָ: " << metric << endl;
 }
 
 int NOD(int a, int b)
