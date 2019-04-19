@@ -84,6 +84,9 @@ type* type::In(ifstream &ReadFile)
 	case 2:
 		temp = new shot;
 		break;
+	case 3:
+		temp = new polar;
+		break;
 	default:
 		return 0;
 	}
@@ -132,4 +135,18 @@ int NOD(int a, int b)
 		else
 			b %= a;
 	return a | b;
+}
+
+void polar::InData(ifstream &ReadFile)
+{
+	ReadFile >> radius;
+	if (radius < 0)
+		radius = -radius;
+	ReadFile >> angle;
+}
+
+void polar::Out(ofstream &WriteFile)
+{
+	WriteFile << "Полярные координаты:   ";
+	WriteFile << "(" << radius << ";" << angle << ")" << endl;
 }
