@@ -12,6 +12,8 @@ int main()
 	cout << "Start" << endl;
 	container c;
 	c.In(ReadFile);
+	c.Out(WriteFile);
+	WriteFile << "================================================" << endl;
 	c.Sorting();
 	c.Out(WriteFile);
 	c.FiltredOut(WriteFile);
