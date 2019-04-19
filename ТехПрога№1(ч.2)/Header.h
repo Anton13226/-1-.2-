@@ -45,8 +45,8 @@ private:
 class complex : public type 
 {
 private:
-	int number1;
-	int number2;
+	double number1;
+	double number2;
 	string metric;
 public:
 	// переопределяем интерфейс класса
@@ -58,8 +58,8 @@ public:
 
 class shot : public type {
 private:
-	int number1;
-	int number2;
+	double number1;
+	double number2;
 	string metric;
 public:
 	// переопределяем интерфейс класса
@@ -71,8 +71,8 @@ public:
 class polar : public type
 {
 private:
-	int radius;
-	float angle;
+	double radius;
+	double angle;
 	string metric;
 public:
 	// переопределяем интерфейс класса

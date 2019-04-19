@@ -60,9 +60,6 @@ void container::Clear()
 		head = temp;
 		len = len - 1;
 	}
-
-
-
 }
 
 container::container()
@@ -100,15 +97,16 @@ void complex::InData(ifstream &ReadFile)
 {
 	ReadFile >> number1;
 	ReadFile >> number2;
+	getline(ReadFile, metric, ' ');
 }
 
 void complex::Out(ofstream &WriteFile)
 {
 	WriteFile << "Комплексное число:    Z=" << number1;
 	if (number2 > 0)
-		WriteFile << "+" << number2 << "i" << endl;
+		WriteFile << "+" << number2 << "i   || Е. И: " << metric << endl;
 	else
-		WriteFile << number2 << "i" << endl;
+		WriteFile << number2 << "i   || Е. И: " << metric << endl;
 }
 
 
@@ -143,10 +141,11 @@ void polar::InData(ifstream &ReadFile)
 	if (radius < 0)
 		radius = -radius;
 	ReadFile >> angle;
+	getline(ReadFile, metric, ' ');
 }
 
 void polar::Out(ofstream &WriteFile)
 {
 	WriteFile << "Полярные координаты:   ";
-	WriteFile << "(" << radius << ";" << angle << ")" << endl;
+	WriteFile << "(" << radius << ";" << angle << ")" << "|| Е. И: " << metric << endl;
 }
