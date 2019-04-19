@@ -14,6 +14,7 @@ int main()
 	c.In(ReadFile);
 	c.Sorting();
 	c.Out(WriteFile);
+	c.FiltredOut(WriteFile);
 	c.Clear();
 	cout << "Stop" << endl;
 	return 0;

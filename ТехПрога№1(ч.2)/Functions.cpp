@@ -168,6 +168,31 @@ float shot::Count()
 	return Sort;
 }
 
+void container::FiltredOut(ofstream &WriteFile)
+{
+	Node *temp = head;
+	WriteFile << endl << "Только дроби:" << endl;
+	for (int i = 0; i < len; i++)
+	{
+		temp->info->OutOnlyShot(WriteFile);
+		temp = temp->next;
+	}
+}
+
+
+void type::OutOnlyShot(ofstream &WriteFile) //void complex::OutOnlyShot(ofstream &WriteFile)
+{
+	exit;
+}
+
+void shot::OutOnlyShot(ofstream &WriteFile)
+{
+	Out(WriteFile);
+}
+
+
+
+
 int NOD(int a, int b)
 {
 	while ((a && b) != 0)
