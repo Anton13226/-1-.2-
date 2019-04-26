@@ -17,7 +17,7 @@ public:
 	virtual void InData(ifstream &ReadFile)=0;					// ввод с учетом типа объекта
 	virtual void Out(ofstream &WriteFile)=0;		// вывод с учетом типа объекта
 	virtual void OutOnlyShot(ofstream &WriteFile);
-	virtual double Count() = 0;
+	virtual float Count() = 0;
 protected:
 	type() {};
 };
@@ -56,7 +56,7 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
-	double Count();
+	float Count();
 	complex() {} // создание без инициализации.
 };
 
@@ -69,7 +69,7 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
-	double Count();
+	float Count();
 	void OutOnlyShot(ofstream &WriteFile);
 	shot() {} // создание без инициализации.
 };
@@ -84,7 +84,7 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
-	double Count();
+	float Count();
 	polar() {} // создание без инициализации.
 };
 

@@ -138,7 +138,7 @@ void complex::Out(ofstream &WriteFile)
 		WriteFile << number2 << "i   || Е. И: " << metric << endl;
 }
 
-double complex::Count()
+float complex::Count()
 {
 	double Sort = 0;
 	Sort = round(sqrt(number1*number1 + number2 * number2) * 100) / 100;
@@ -161,7 +161,7 @@ void shot::Out(ofstream &WriteFile)
 	WriteFile << number1 / Nod << "/" << number2 / Nod << "|| Е. И: " << metric << endl;
 }
 
-double shot::Count()
+float shot::Count()
 {
 	double Sort = 0;
 	Sort = round((number1 / number2) * 100) / 100; //до второго занака после запятой
@@ -220,7 +220,7 @@ void polar::Out(ofstream &WriteFile)
 	WriteFile << "(" << radius << ";" << angle << ")" << "|| Е. И: " << metric << endl;
 }
 
-double polar::Count()
+float polar::Count()
 {
 	double Sort = 0;
 	Sort = angle;
