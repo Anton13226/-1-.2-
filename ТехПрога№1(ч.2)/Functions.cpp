@@ -99,7 +99,7 @@ container::container()
 type* type::In(ifstream &ReadFile)
 {
 
-	type *temp;	//Временные указатели
+	type *temp;
 	int k;
 	ReadFile >> k;
 	switch (k) {
