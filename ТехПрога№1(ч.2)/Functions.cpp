@@ -8,19 +8,22 @@ void container::In(ifstream &ReadFile)
 	while (!ReadFile.eof()) {
 		temp = new Node;
 		temp->info = type::In(ReadFile);
-		++len;
+		if (temp->info != NULL)
+		{
+			++len;
 
-		if (head == NULL)
-		{
-			temp->next = temp;
-			head = temp;
-			Help = temp;
-		}
-		else//порядок элементов будет отличаться, от процедурного
-		{
-			temp->next = head;
-			Help->next = temp;                    //Запись данных в следующее за последним элементом поле
-			Help = temp;                          //Последний активный элемент=только что созданный.
+			if (head == NULL)
+			{
+				temp->next = temp;
+				head = temp;
+				Help = temp;
+			}
+			else//порядок элементов будет отличаться, от процедурного
+			{
+				temp->next = head;
+				Help->next = temp;                    //Запись данных в следующее за последним элементом поле
+				Help = temp;                          //Последний активный элемент=только что созданный.
+			}
 		}
 	}
 }
@@ -98,10 +101,34 @@ container::container()
 
 type* type::In(ifstream &ReadFile)
 {
+    type *temp;
+	
+	string chek;
+	ReadFile >> chek;
 
-	type *temp;
-	int k;
-	ReadFile >> k;
+	if (chek == "\0")
+	{
+		return NULL;
+	}
+
+	if (chek.length()  > 1)
+	{
+		ReadFile.get();
+		getline(ReadFile, chek, '\n');
+		return NULL;
+	}
+
+	if (!isdigit(int(unsigned char(chek.f()))))
+	{
+		ReadFile.get();
+		getline(ReadFile, chek, '\n');
+		return NULL;
+	}
+
+	int k = stoul(chek);
+
+	//int k;
+	//ReadFile >> k;
 	switch (k) {
 	case 1:
 		temp = new complex;
@@ -123,9 +150,33 @@ type* type::In(ifstream &ReadFile)
 
 void complex::InData(ifstream &ReadFile)
 {
-	ReadFile >> number1;
-	ReadFile >> number2;
-	getline(ReadFile, metric, ' ');
+	string chek;
+	getline(ReadFile, chek, ' ');
+//	ReadFile >> number1;
+
+	for (int i = 0; i < chek.length(); i++)
+	{
+		if (!isdigit(double(unsigned char(chek[i]))))
+		{
+			number1 = 0;
+			goto m1;
+		}
+	}
+	number1 = stoul(chek);
+	//ReadFile >> number1;
+	/*string chek2;
+	ReadFile >> chek2;
+
+	if (!isdigit(int(unsigned char(chek2.front()))))
+	{
+		ReadFile.get();
+		getline(ReadFile, chek2, '\n');
+		number2 = 0;
+	}
+
+	number2 = stoul(chek2);*/
+m1:	ReadFile >> number2;
+	getline(ReadFile, metric, '\n');
 }
 
 void complex::Out(ofstream &WriteFile)
@@ -150,7 +201,7 @@ void shot::InData(ifstream &ReadFile)
 {
 	ReadFile >> number1;
 	ReadFile >> number2;
-	getline(ReadFile, metric, ' ');
+	getline(ReadFile, metric, '\n');
 }
 
 void shot::Out(ofstream &WriteFile)
@@ -211,7 +262,7 @@ void polar::InData(ifstream &ReadFile)
 	ReadFile >> angle;
 	if ((angle < 0) || (angle > 6.2))
 		angle = 6.2;
-	getline(ReadFile, metric, ' ');
+	getline(ReadFile, metric, '\n');
 }
 
 void polar::Out(ofstream &WriteFile)
