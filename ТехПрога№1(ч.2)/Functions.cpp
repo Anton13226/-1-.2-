@@ -7,20 +7,22 @@ void container::In(ifstream &ReadFile)
 	Node *Help = NULL;
 	while (!ReadFile.eof()) {
 		temp = new Node;
-		temp->info = type::In(ReadFile);
-		++len;
+		if((temp->info = type::In(ReadFile)) != NULL)
+		{
+			++len;
 
-		if (head == NULL)
-		{
-			temp->next = temp;
-			head = temp;
-			Help = temp;
-		}
-		else//порядок элементов будет отличаться, от процедурного
-		{
-			temp->next = head;
-			Help->next = temp;                    //Запись данных в следующее за последним элементом поле
-			Help = temp;                          //Последний активный элемент=только что созданный.
+			if (head == NULL)
+			{
+				temp->next = temp;
+				head = temp;
+				Help = temp;
+			}
+			else//порядок элементов будет отличаться, от процедурного
+			{
+				temp->next = head;
+				Help->next = temp;                    //Запись данных в следующее за последним элементом поле
+				Help = temp;                          //Последний активный элемент=только что созданный.
+			}
 		}
 	}
 }
@@ -100,8 +102,33 @@ type* type::In(ifstream &ReadFile)
 {
 
 	type *temp;	//Временные указатели
-	int k;
-	ReadFile >> k;
+	
+	string chek;
+	ReadFile >> chek;
+
+	if (chek == "\0")
+	{
+		return NULL;
+	}
+
+	if (chek.length()  > 1)
+	{
+		ReadFile.get();
+		getline(ReadFile, chek, '\n');
+		return NULL;
+	}
+
+	if (!isdigit(int(unsigned char(chek.front()))))
+	{
+		ReadFile.get();
+		getline(ReadFile, chek, '\n');
+		return NULL;
+	}
+
+	int k = stoul(chek);
+
+	//int k;
+	//ReadFile >> k;
 	switch (k) {
 	case 1:
 		temp = new complex;
@@ -115,17 +142,90 @@ type* type::In(ifstream &ReadFile)
 	default:
 		return 0;
 	}
-
-	temp->InData(ReadFile);
-	return temp;
+	if (!temp->InData(ReadFile))
+	{
+		return NULL;
+	}
+	else
+	{
+		return temp;
+	}
+	//temp->InData(ReadFile);
+	//return temp;
 }
 
 
-void complex::InData(ifstream &ReadFile)
+bool complex::InData(ifstream &ReadFile)
 {
-	ReadFile >> number1;
-	ReadFile >> number2;
-	getline(ReadFile, metric, ' ');
+
+	string chek;
+	string chek2;
+	bool chekMinus = false;
+	ReadFile >> chek;
+	if (chek == "\0")
+	{
+		return false;
+	}
+
+	if (chek[0] == '-')
+	{
+		char *buff = new char[chek.size()-1];
+		for (int i = 1; i < chek.size(); i++)
+		{
+			buff[i - 1] = chek[i];
+		}
+		buff[chek.size() - 1] = '\0';
+		chek = buff;
+		chekMinus = true;
+	}
+
+	for (int i = 0; i < chek.size(); i++)
+	{
+		if (!isdigit(double(unsigned char(chek[i]))))
+		{
+			ReadFile.get();
+			getline(ReadFile, chek, '\n');
+			return false;
+		}
+	}
+	number1 = stoul(chek);
+	if (chekMinus)
+	{
+		number1 = (-1)*number1;
+	}
+	ReadFile >> chek2;
+	if (chek2 == "\0")
+	{
+		return false;
+	}
+	if (chek2[0] == '-')
+	{
+		char *buff = new char[chek2.size() - 1];
+		for (int i = 1; i < chek2.size(); i++)
+		{
+			buff[i - 1] = chek2[i];
+		}
+		buff[chek2.size() - 1] = '\0';
+		chek2 = buff;
+		chekMinus = true;
+	}
+
+	for (int i = 0; i < chek2.size(); i++)
+	{
+		if (!isdigit(double(unsigned char(chek2[i]))))
+		{
+			ReadFile.get();
+			getline(ReadFile, chek2, '\n');
+			return false;
+		}
+	}
+	number2 = stoul(chek2);
+	if (chekMinus)
+	{
+		number2 = (-1)*number2;
+	}
+	getline(ReadFile, metric, '\n');
+	return true;
 }
 
 void complex::Out(ofstream &WriteFile)
@@ -146,11 +246,76 @@ double complex::Count()
 }
 
 
-void shot::InData(ifstream &ReadFile)
+bool shot::InData(ifstream &ReadFile)
 {
-	ReadFile >> number1;
-	ReadFile >> number2;
-	getline(ReadFile, metric, ' ');
+	string chek;
+	string chek2;
+	bool chekMinus = false;
+	ReadFile >> chek;
+	if (chek == "\0")
+	{
+		return false;
+	}
+
+	if (chek[0] == '-')
+	{
+		char *buff = new char[chek.size() - 1];
+		for (int i = 1; i < chek.size(); i++)
+		{
+			buff[i - 1] = chek[i];
+		}
+		buff[chek.size() - 1] = '\0';
+		chek = buff;
+		chekMinus = true;
+	}
+
+	for (int i = 0; i < chek.size(); i++)
+	{
+		if (!isdigit(double(unsigned char(chek[i]))))
+		{
+			ReadFile.get();
+			getline(ReadFile, chek, '\n');
+			return false;
+		}
+	}
+	number1 = stoul(chek);
+	if (chekMinus)
+	{
+		number1 = (-1)*number1;
+	}
+	ReadFile >> chek2;
+	if (chek2 == "\0")
+	{
+		return false;
+	}
+	if (chek2[0] == '-')
+	{
+		char *buff = new char[chek2.size() - 1];
+		for (int i = 1; i < chek2.size(); i++)
+		{
+			buff[i - 1] = chek2[i];
+		}
+		buff[chek2.size() - 1] = '\0';
+		chek2 = buff;
+		chekMinus = true;
+	}
+
+	for (int i = 0; i < chek2.size(); i++)
+	{
+		if (!isdigit(double(unsigned char(chek2[i]))))
+		{
+			ReadFile.get();
+			getline(ReadFile, chek2, '\n');
+			return false;
+		}
+	}
+	number2 = stoul(chek2);
+	if (chekMinus)
+	{
+		number2 = (-1)*number2;
+	}
+	getline(ReadFile, metric, '\n');
+	return true;
 }
 
 void shot::Out(ofstream &WriteFile)
@@ -203,15 +368,53 @@ int NOD(int a, int b)
 	return a | b;
 }
 
-void polar::InData(ifstream &ReadFile)
+bool polar::InData(ifstream &ReadFile)
 {
-	ReadFile >> radius;
-	if (radius < 0)
-		radius = -radius;
-	ReadFile >> angle;
-	if ((angle < 0) || (angle > 6.2))
-		angle = 6.2;
-	getline(ReadFile, metric, ' ');
+	string chek;
+	string chek2;
+	ReadFile >> chek;
+	if (chek == "\0")
+	{
+		return false;
+	}
+
+	if (chek[0] == '-')
+	{
+		return false;
+	}
+
+	for (int i = 0; i < chek.size(); i++)
+	{
+		if (!isdigit(double(unsigned char(chek[i]))))
+		{
+			ReadFile.get();
+			getline(ReadFile, chek, '\n');
+			return false;
+		}
+	}
+	radius = stoul(chek);
+	ReadFile >> chek2;
+	if (chek2 == "\0")
+	{
+		return false;
+	}
+	if (chek2[0] == '-')
+	{
+		return false;
+	}
+
+	for (int i = 0; i < chek2.size(); i++)
+	{
+		if (!isdigit(double(unsigned char(chek2[i]))))
+		{
+			ReadFile.get();
+			getline(ReadFile, chek2, '\n');
+			return false;
+		}
+	}
+	angle = stoul(chek2);
+	getline(ReadFile, metric, '\n');
+	return true;
 }
 
 void polar::Out(ofstream &WriteFile)

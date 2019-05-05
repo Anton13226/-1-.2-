@@ -14,7 +14,7 @@ public:
 	// иденитфикация, порождение и ввод объекта из потока
 	static type* In(ifstream &ReadFile);				//Для ввода последующих эл-ов
 
-	virtual void InData(ifstream &ReadFile)=0;					// ввод с учетом типа объекта
+	virtual bool InData(ifstream &ReadFile)=0;					// ввод с учетом типа объекта
 	virtual void Out(ofstream &WriteFile)=0;		// вывод с учетом типа объекта
 	virtual void OutOnlyShot(ofstream &WriteFile);
 	virtual double Count() = 0;
@@ -54,7 +54,7 @@ private:
 	string metric;
 public:
 	// переопределяем интерфейс класса
-	void InData(ifstream &ReadFile); // ввод
+	bool InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
 	double Count();
 	complex() {} // создание без инициализации.
@@ -67,7 +67,7 @@ private:
 	string metric;
 public:
 	// переопределяем интерфейс класса
-	void InData(ifstream &ReadFile); // ввод
+	bool InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
 	double Count();
 	void OutOnlyShot(ofstream &WriteFile);
@@ -82,7 +82,7 @@ private:
 	string metric;
 public:
 	// переопределяем интерфейс класса
-	void InData(ifstream &ReadFile); // ввод
+	bool InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
 	double Count();
 	polar() {} // создание без инициализации.
