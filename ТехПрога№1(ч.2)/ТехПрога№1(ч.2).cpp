@@ -9,6 +9,12 @@ int main()
 {
 	ifstream ReadFile("input.txt");  // файлы для ввода и вывода
 	ofstream WriteFile("output.txt"); // с ними было удобнее работать
+	if (!ReadFile.is_open())
+	{
+		cout << "No input file found or could not open!" << endl;
+		system("pause");
+		return 1;
+	}
 	cout << "Start" << endl;
 	container c;
 	c.In(ReadFile);
