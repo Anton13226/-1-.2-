@@ -10,7 +10,7 @@ int main()
 	ifstream ReadFile("input.txt");  // файлы для ввода и вывода
 	ofstream WriteFile("output.txt"); // с ними было удобнее работать
 	cout << "Start" << endl;
-	container c;
+	Container c;
 	c.In(ReadFile);
 	c.Out(WriteFile);
 	WriteFile << "================================================" << endl;

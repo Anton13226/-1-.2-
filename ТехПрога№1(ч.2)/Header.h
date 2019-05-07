@@ -8,28 +8,28 @@ using namespace std;
 
 int NOD(int a, int b);
 
-class type
+class Type
 {
 public:
 	// иденитфикация, порождение и ввод объекта из потока
-	static type* In(ifstream &ReadFile);				//Для ввода последующих эл-ов
+	static Type* In(ifstream &ReadFile);				//Для ввода последующих эл-ов
 
 	virtual void InData(ifstream &ReadFile)=0;					// ввод с учетом типа объекта
 	virtual void Out(ofstream &WriteFile)=0;		// вывод с учетом типа объекта
 	virtual void OutOnlyShot(ofstream &WriteFile);
 	virtual double Count() = 0;
 protected:
-	type() {};
+    Type() {};
 };
 
 class Node
 {
 public:
-	type *info;
+	Type *info;
 	Node *next;
 };
 
-class container
+class Container
 {
 public:
 	
@@ -38,15 +38,15 @@ public:
 	void Clear();				//очистка контейнера
 	void Sorting();
 	void FiltredOut(ofstream &WriteFile);
-	container();				//инициализация контейнера
-	~container() { Clear(); };
+	Container();				//инициализация контейнера
+	~Container() { Clear(); };
 private:
 	Node *head;
 	int len;			//кол-во элементов
 };
 
 
-class complex : public type 
+class Complex : public Type 
 {
 private:
 	double number1;
@@ -57,10 +57,10 @@ public:
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
 	double Count();
-	complex() {} // создание без инициализации.
+	Complex() {} // создание без инициализации.
 };
 
-class shot : public type {
+class Shot : public Type {
 private:
 	double number1;
 	double number2;
@@ -71,10 +71,10 @@ public:
 	void Out(ofstream &WriteFile); // вывод
 	double Count();
 	void OutOnlyShot(ofstream &WriteFile);
-	shot() {} // создание без инициализации.
+	Shot() {} // создание без инициализации.
 };
 
-class polar : public type
+class Polar : public Type
 {
 private:
 	double radius;
@@ -85,6 +85,6 @@ public:
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
 	double Count();
-	polar() {} // создание без инициализации.
+	Polar() {} // создание без инициализации.
 };
 
