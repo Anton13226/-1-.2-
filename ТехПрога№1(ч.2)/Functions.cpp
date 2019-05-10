@@ -121,6 +121,7 @@ void Container::MultiMethod(ofstream &WriteFile)
 			current_first->info->MultiMethod(current_second->info, WriteFile);
 			current_first->info->Out(WriteFile);
 			current_second->info->Out(WriteFile);
+			WriteFile << endl;
 			current_second = current_second->next;
 		}
 		current_first = current_first->next;

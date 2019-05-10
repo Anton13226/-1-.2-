@@ -17,6 +17,10 @@ public:
 	virtual void InData(ifstream &ReadFile)=0;					// ввод с учетом типа объекта
 	virtual void Out(ofstream &WriteFile)=0;		// вывод с учетом типа объекта
 	virtual void OutOnlyShot(ofstream &WriteFile);
+	virtual void MultiMethod(Type *other, ofstream &WriteFile) = 0;
+	virtual void MMComplex(ofstream &WriteFile) = 0;
+	virtual void MMShot(ofstream &WriteFile) = 0;
+	virtual void MMPolar(ofstream &WriteFile) = 0;
 	virtual double Count() = 0;
 protected:
     Type() {};
@@ -38,6 +42,7 @@ public:
 	void Clear();				//очистка контейнера
 	void Sorting();
 	void FiltredOut(ofstream &WriteFile);
+	void MultiMethod(ofstream &WriteFile);
 	Container();				//инициализация контейнера
 	~Container() { Clear(); };
 private:
@@ -56,6 +61,10 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
+	void MultiMethod(Type *other, ofstream &WriteFile);
+	void MMComplex(ofstream &WriteFile);
+	void MMShot(ofstream &WriteFile);
+	void MMPolar(ofstream &WriteFile);
 	double Count();
 	Complex() {} // создание без инициализации.
 };
@@ -69,6 +78,10 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
+	void MultiMethod(Type *other, ofstream &WriteFile);
+	void MMComplex(ofstream &WriteFile);
+	void MMShot(ofstream &WriteFile);
+	void MMPolar(ofstream &WriteFile);
 	double Count();
 	void OutOnlyShot(ofstream &WriteFile);
 	Shot() {} // создание без инициализации.
@@ -84,6 +97,10 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream &ReadFile); // ввод
 	void Out(ofstream &WriteFile); // вывод
+	void MultiMethod(Type *other, ofstream &WriteFile);
+	void MMComplex(ofstream &WriteFile);
+	void MMShot(ofstream &WriteFile);
+	void MMPolar(ofstream &WriteFile);
 	double Count();
 	Polar() {} // создание без инициализации.
 };
