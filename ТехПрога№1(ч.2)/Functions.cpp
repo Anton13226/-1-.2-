@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Header.h"
 
-
 Container::Container()
 {
 	head = NULL;
@@ -12,7 +11,8 @@ void Container::In(ifstream &ReadFile)
 {
 	Node *temp;
 	Node *Help = NULL;
-	while (!ReadFile.eof()) {
+	while (!ReadFile.eof()) 
+	{
 		temp = new Node;
 		temp->info = Type::In(ReadFile);
 		++len;
@@ -35,7 +35,8 @@ void Container::In(ifstream &ReadFile)
 void Container::Out(ofstream &WriteFile)
 {
 	Node *current = head;
-	for (int i = 0; i < len; i++) {
+	for (int i = 0; i < len; i++)
+	{
 		WriteFile << i + 1 << ": ";
 		if (len > 0)
 		{
@@ -71,7 +72,6 @@ void Container::Clear()
 
 void Container::Sorting()
 {
-	
 	for (int i = 0; i < len - 1; i++)
 	{
 		for (int j = 0; j < len - 1; j++)
@@ -110,7 +110,6 @@ void Container::FiltredOut(ofstream &WriteFile)
 
 Type* Type::In(ifstream &ReadFile)
 {
-
 	Type *temp;	//Временные указатели
 	int k;
 	ReadFile >> k;
@@ -160,7 +159,6 @@ double Complex::Count()
 	Sort = round(sqrt(number1*number1 + number2 * number2) * 100) / 100;
 	return Sort;
 }
-
 
 void Shot::InData(ifstream &ReadFile)
 {
