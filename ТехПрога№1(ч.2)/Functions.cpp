@@ -108,6 +108,87 @@ void Container::FiltredOut(ofstream &WriteFile)
 	}
 }
 
+void Container::MultiMethod(ofstream &WriteFile)
+{
+	Node *current_first = head;
+	Node *current_second = current_first->next;
+
+	WriteFile << "Multimethod." << endl;
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = i + 1; j < len; j++)
+		{
+			current_first->info->MultiMethod(current_second->info, WriteFile);
+			current_first->info->Out(WriteFile);
+			current_second->info->Out(WriteFile);
+			current_second = current_second->next;
+		}
+		current_first = current_first->next;
+		current_second = current_first->next;
+	}
+
+}
+void Complex::MultiMethod(Type *other, ofstream &WriteFile)
+{
+	other->MMComplex(WriteFile);
+}
+
+void Complex::MMComplex(ofstream &WriteFile)
+{
+	WriteFile << "COMPLEX and COMPLEX." << endl;
+}
+
+void Complex::MMShot(ofstream &WriteFile)
+{
+	WriteFile << "SHOT and COMPLEX." << endl;
+}
+
+void Complex::MMPolar(ofstream &WriteFile)
+{
+	WriteFile << "Polar and COMPLEX." << endl;
+}
+
+void Shot::MultiMethod(Type *other, ofstream &WriteFile)
+{
+	other->MMShot(WriteFile);
+}
+
+void Shot::MMComplex(ofstream &WriteFile)
+{
+	WriteFile << "COMPLEX and SHOT." << endl;
+}
+
+void Shot::MMShot(ofstream &WriteFile)
+{
+	WriteFile << "SHOT and SHOT." << endl;
+}
+
+void Shot::MMPolar(ofstream &WriteFile)
+{
+	WriteFile << "POLAR and SHOT." << endl;
+}
+
+void Polar::MultiMethod(Type *other, ofstream &WriteFile)
+{
+	other->MMPolar(WriteFile);
+}
+
+void Polar::MMComplex(ofstream &WriteFile)
+{
+	WriteFile << "COMPLEX and POLAR." << endl;
+}
+
+void Polar::MMShot(ofstream &WriteFile)
+{
+	WriteFile << "SHOT and POLAR." << endl;
+}
+
+void Polar::MMPolar(ofstream &WriteFile)
+{
+	WriteFile << "POLAR and POLAR." << endl;
+}
+
+
 Type* Type::In(ifstream &ReadFile)
 {
 
