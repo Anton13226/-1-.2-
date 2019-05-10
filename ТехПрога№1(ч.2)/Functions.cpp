@@ -107,6 +107,55 @@ void Container::FiltredOut(ofstream &WriteFile)
 		temp = temp->next;
 	}
 }
+void Container::MultiMethod(ofstream &WriteFile)
+{
+	Node *current_first = head;
+	Node *current_second = current_first->next;
+
+	WriteFile << "Multimethod." << endl;
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = i + 1; j < len; j++)
+		{
+			current_first->info->MultiMethod(current_second->info, WriteFile);
+			current_first->info->Out(WriteFile);
+			current_second->info->Out(WriteFile);
+			current_second = current_second->next;
+		}
+		current_first = current_first->next;
+		current_second = current_first->next;
+	}
+
+}
+void Complex::MultiMethod(Type *other, ofstream &WriteFile)
+{
+	other->MMComplex(WriteFile);
+}
+
+void Complex::MMComplex(ofstream &WriteFile)
+{
+	WriteFile << "COMPLEX and COMPLEX." << endl;
+}
+
+void Complex::MMShot(ofstream &WriteFile)
+{
+	WriteFile << "SHOT and COMPLEX." << endl;
+}
+
+void Shot::MultiMethod(Type *other, ofstream &WriteFile)
+{
+	other->MMShot(WriteFile);
+}
+
+void Shot::MMComplex(ofstream &WriteFile)
+{
+	WriteFile << "COMPLEX and SHOT." << endl;
+}
+
+void Shot::MMShot(ofstream &WriteFile)
+{
+	WriteFile << "SHOT and SHOT." << endl;
+}
 
 Type* Type::In(ifstream &ReadFile)
 {
@@ -120,9 +169,6 @@ Type* Type::In(ifstream &ReadFile)
 		break;
 	case 2:
 		temp = new Shot;
-		break;
-	case 3:
-		temp = new Polar;
 		break;
 	default:
 		return 0;
@@ -189,29 +235,7 @@ void Shot::OutOnlyShot(ofstream &WriteFile)
 	Out(WriteFile);
 }
 
-void Polar::InData(ifstream &ReadFile)
-{
-	ReadFile >> radius;
-	if (radius < 0)
-		radius = -radius;
-	ReadFile >> angle;
-	if ((angle < 0) || (angle > 6.2))
-		angle = 6.2;
-	ReadFile >> metric;
-}
 
-void Polar::Out(ofstream &WriteFile)
-{
-	WriteFile << "Полярные координаты:   ";
-	WriteFile << "(" << radius << ";" << angle << ")" << "|| Е. И: " << metric << endl;
-}
-
-double Polar::Count()
-{
-	double Sort = 0;
-	Sort = angle;
-	return Sort;
-}
 
 int NOD(int a, int b)
 {
