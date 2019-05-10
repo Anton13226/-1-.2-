@@ -107,6 +107,7 @@ void Container::FiltredOut(ofstream &WriteFile)
 		temp = temp->next;
 	}
 }
+
 void Container::MultiMethod(ofstream &WriteFile)
 {
 	Node *current_first = head;
